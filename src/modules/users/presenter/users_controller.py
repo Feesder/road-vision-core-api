@@ -12,5 +12,7 @@ async def get_users(session: AsyncSession = Depends(db_helper.session_depedency)
 
 
 @users_router.post("/{user_id}")
-async def create_user(user_id: int,session: AsyncSession = Depends(db_helper.session_depedency)):
+async def create_user(
+    user_id: int, session: AsyncSession = Depends(db_helper.session_depedency)
+):
     return users_service.get_user_by_id(session=session, user_id=user_id)
