@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from src.common.database.db_helper import db_helper
 import src.modules.users.domain.users_service as users_service
 
-users_router = APIRouter(prefix="/users")
+users_router = APIRouter(prefix="/api/v1/users")
 
 
 @users_router.get("/")

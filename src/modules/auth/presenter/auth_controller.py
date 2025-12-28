@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-auth_router = APIRouter(prefix="/auth")
+auth_router = APIRouter(prefix="/api/v1/auth")
 
 
 @auth_router.post("/sign-up")
