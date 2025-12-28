@@ -1,3 +1,4 @@
+from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTableUUID
 from .base import Base
 
 from sqlalchemy.orm import Mapped, mapped_column
