@@ -4,9 +4,10 @@ from src.common.models.access_token import AccessToken
 from fastapi_users.authentication.strategy.db import DatabaseStrategy
 from src.common.models.access_token import AccessToken
 from src.config.config import settings
+from src.common.dependencies.access_tokens_dependency import get_access_tokens_db
 
-def get_database_strategy(access_token_db: AccessTokenDatabase[AccessToken] = Depends(get_access_token_db)) -> DatabaseStrategy:
+def get_database_strategy(access_tokens_db: AccessTokenDatabase[AccessToken] = Depends(get_access_tokens_db)) -> DatabaseStrategy:
     return DatabaseStrategy(
-        access_token_db,
+        access_tokens_db,
         settings.access_toeken_settings.access_token_expire
     )
