@@ -8,6 +8,8 @@ ENV_DIR = BASE_DIR / ".env"
 
 class AccessTokenSettings(BaseSettings):
     access_token_expire: int = Field(env="ACCESS_TOKEN_EXPIRE", default=60*60) 
+    reset_password_token_secret: str = Field(env="RESET_PASSWORD_TOKEN_SECRET")
+    verification_token_secret: str = Field(env="VERIFICATION_TOKEN_SECRET")
 
 
 class Settings(BaseSettings):
