@@ -20,6 +20,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 from src.common.models.base import Base
 from src.common.models.user import User
+from src.common.models.access_token import AccessToken
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
