@@ -12,6 +12,10 @@ class AccessTokenSettings(BaseModel):
     verification_token_secret: str = Field(env="VERIFICATION_TOKEN_SECRET")
 
 
+class ApiPrefix(BaseModel):
+    bearer_token_url = "/api/v1/auth/sign-in"
+
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=ENV_DIR,
@@ -29,6 +33,8 @@ class Settings(BaseSettings):
     postgres_db: str = Field(env="POSTGRES_DB")
 
     access_token_settings: AccessTokenSettings = Field(env="ACCESS_TOKEN_SETTINGS", default_factory=AccessTokenSettings)
+
+    api_prefix: ApiPrefix = ApiPrefix()
 
     def database_url(self) -> str:
         return f"postgresql+asyncpg://{self.postgres_user}:{self.postgres_password}@{self.postgres_host}:{self.postgres_port}/{self.postgres_db}"

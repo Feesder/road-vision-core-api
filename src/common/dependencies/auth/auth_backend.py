@@ -1,8 +1,9 @@
 from fastapi_users.authentication import AuthenticationBackend, BearerTransport
 from src.common.dependencies.auth.strategy import get_database_strategy
+from src.config.config import settings
 
 bearer_transport = BearerTransport(
-    tokenUrl="/api/v1/auth/sign-in",
+    tokenUrl=settings.api_prefix.bearer_token_url,
 )
 
 authentication_backend = AuthenticationBackend(
