@@ -13,7 +13,7 @@ class AccessTokenSettings(BaseModel):
 
 
 class ApiPrefix(BaseModel):
-    bearer_token_url: str = "/api/v1/auth/sign-in"
+    bearer_token_url: str = "/api/v1/auth/login"
 
 
 class Settings(BaseSettings):
