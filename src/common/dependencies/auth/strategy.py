@@ -4,7 +4,7 @@ from src.common.models.access_token import AccessToken
 from fastapi_users.authentication.strategy.db import DatabaseStrategy
 from src.common.models.access_token import AccessToken
 from src.config.config import settings
-from src.common.dependencies.access_tokens_dependency import get_access_tokens_db
+from src.common.dependencies.auth.access_tokens_dependency import get_access_tokens_db
 
 
 def get_database_strategy(
