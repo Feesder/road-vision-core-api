@@ -28,7 +28,6 @@ def upgrade() -> None:
         "users",
         sa.Column("username", sa.String(length=255), nullable=False),
         sa.Column("email", sa.String(length=255), nullable=False),
-        sa.Column("password", sa.String(length=255), nullable=False),
         sa.Column("id", sa.UUID(), nullable=False),
         sa.Column("created_at", sa.DateTime(timezone=True), server_default=func.now(), nullable=False),
         sa.Column("updated_at", sa.DateTime(timezone=True), onupdate=func.now(), server_default=func.now(), nullable=False),
