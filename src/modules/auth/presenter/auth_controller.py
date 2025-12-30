@@ -1,23 +1,9 @@
 from fastapi import APIRouter
+from src.common.dependencies.auth.fastapi_users import fastapi_users
+from src.common.dependencies.auth.auth_backend import authentication_backend
 
-auth_router = APIRouter(prefix="/api/v1/auth")
+auth_router = APIRouter(prefix="/api/v1/auth", tags=["auth"])
 
-
-@auth_router.post("/sign-up")
-def signUp():
-    pass
-
-
-@auth_router.post("/sign-in")
-def singIn():
-    pass
-
-
-@auth_router.post("/sign-out")
-def signOut():
-    pass
-
-
-@auth_router.post("/refresh")
-def refresh():
-    pass
+auth_router.include_router(
+    router=fastapi_users.get_auth_router(authentication_backend)
+)
