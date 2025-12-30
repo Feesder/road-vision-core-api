@@ -11,10 +11,10 @@ log = logging.getLogger(__name__)
 
 class AuthManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
     reset_password_token_secret = (
-        settings.access_toeken_settings.reset_password_token_secret
+        settings.access_token_settings.reset_password_token_secret
     )
     verification_token_secret = (
-        settings.access_toeken_settings.verification_token_secret
+        settings.access_token_settings.verification_token_secret
     )
 
     async def on_after_register(self, user: User, request: Optional[Request] = None):
