@@ -11,5 +11,5 @@ def get_database_strategy(
     access_tokens_db: AccessTokenDatabase[AccessToken] = Depends(get_access_tokens_db),
 ) -> DatabaseStrategy:
     return DatabaseStrategy(
-        access_tokens_db, settings.access_toeken_settings.access_token_expire
+        access_tokens_db, settings.access_token_settings.access_token_expire
     )

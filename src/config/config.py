@@ -13,6 +13,13 @@ class AccessTokenSettings(BaseSettings):
 
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(
+        env_file=ENV_DIR,
+        env_file_encoding="utf-8",
+        env_nested_delimiter="__",
+        env_prefix="APP_CONFIG__",
+    )
+
     db_echo: bool = Field(env="DB_ECHO")
 
     postgres_user: str = Field(env="POSTGRES_USER")
@@ -21,17 +28,10 @@ class Settings(BaseSettings):
     postgres_port: str = Field(env="POSTGRES_PORT")
     postgres_db: str = Field(env="POSTGRES_DB")
 
-    access_toeken_settings: AccessTokenSettings = AccessTokenSettings()
+    access_token_settings: AccessTokenSettings = AccessTokenSettings()
 
     def database_url(self) -> str:
         return f"postgresql+asyncpg://{self.postgres_user}:{self.postgres_password}@{self.postgres_host}:{self.postgres_port}/{self.postgres_db}"
-
-    model_config = SettingsConfigDict(
-        env_file=ENV_DIR,
-        env_file_encoding="utf-8",
-        env_nested_delimiter="__",
-        env_prefix="APP_CONFIG__",
-    )
 
 
 settings = Settings()
