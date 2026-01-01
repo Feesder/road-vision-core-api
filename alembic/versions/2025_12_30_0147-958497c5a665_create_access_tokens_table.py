@@ -33,7 +33,7 @@ def upgrade() -> None:
             fastapi_users_db_sqlalchemy.generics.TIMESTAMPAware(timezone=True),
             nullable=False,
         ),
-        sa.Column("updated_at", sa.DateTime(), nullable=False),
+        sa.Column("updated_at", sa.DateTime(), nullable=False, server_default=sa.func.now(), onupdate=sa.func.now()),
         sa.ForeignKeyConstraint(["user_id"], ["users.id"], ondelete="CASCADE"),
         sa.PrimaryKeyConstraint("token", "id"),
     )
