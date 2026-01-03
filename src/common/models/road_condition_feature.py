@@ -9,7 +9,7 @@ class RoadConditionFeature(Base):
 
     longitude: Mapped[float] = mapped_column(nullable=False)
     latitude: Mapped[float] = mapped_column(nullable=False)
-    accrued_at: Mapped[float] = mapped_column(nullable=False)
+    accuracy: Mapped[float] = mapped_column(nullable=False)
     road_condition: Mapped[RoadType] = mapped_column(
         Enum(RoadType, name="road_condition", native_enum=True), nullable=False
     )
