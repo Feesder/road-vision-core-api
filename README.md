@@ -5,6 +5,7 @@
 ## Использованный стек
 
 - Python 3.14
+- Poetry
 - Fast API
 - SQLAlchemy
 - Alembic
