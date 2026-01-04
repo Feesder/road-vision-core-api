@@ -4,6 +4,9 @@ import src.modules.road_condition_features.data.road_condition_feature_repositor
 from src.common.models.road_condition_feature import RoadConditionFeature
 from fastapi import status
 from src.common.constants.error_code import ErrorCode
+from src.modules.road_condition_features.dto.road_condition_feautre_dto import (
+    RoadConditionFeatureDto,
+)   
 
 
 async def get_road_condition_features(
@@ -35,11 +38,11 @@ async def get_road_condition_feature_by_id(
 
 
 async def update_road_condition_feature(
-    session: AsyncSession, payload: RoadConditionFeature
+    session: AsyncSession, feature_id: str, payload: RoadConditionFeatureDto
 ) -> RoadConditionFeature:
     road_condition_feature = (
         road_condition_features_repository.get_road_condition_feature_by_id(
-            session, payload.id
+            session, feature_id=feature_id, payload=payload
         )
     )
 
@@ -51,7 +54,7 @@ async def update_road_condition_feature(
 
     updated_road_condition_feature = (
         await road_condition_features_repository.update_road_condition_feature(
-            session, payload
+            session, road_condition_feature, payload
         )
     )
 
