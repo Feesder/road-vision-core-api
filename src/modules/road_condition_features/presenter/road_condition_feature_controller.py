@@ -25,7 +25,7 @@ async def get_road_condition_features(session: AsyncSession = Depends(db_helper.
 
 
 @road_condition_feature_router.get("/{feature_id}")
-async def get_road_condition_feature_by_id(session: AsyncSession, feature_id: str):
+async def get_road_condition_feature_by_id(feature_id: str, session: AsyncSession = Depends(db_helper.scoped_session_depedency)):
     road_condition_feature = await road_condition_feature_service.get_road_condition_feature_by_id(session, feature_id)
 
     return mapRoadConditionFeatureToRoadConditionFeatureDto(road_condition_feature)
@@ -37,5 +37,5 @@ async def update_road_condition_feature(feature_id: str):
 
 
 @road_condition_feature_router.delete("/{feature_id}")
-async def delete_road_condition_feature(feature_id: str):
-    pass
+async def delete_road_condition_feature(feature_id: str, session: AsyncSession = Depends(db_helper.scoped_session_depedency)):
+    await road_condition_feature_service.delete_road_condition_feature(session, feature_id)

@@ -25,3 +25,16 @@ async def get_road_condition_feature_by_id(
         )
 
     return road_condition_feature
+
+
+async def delete_road_condition_feature(
+    session: AsyncSession, feature: RoadConditionFeature
+) -> None:
+    road_condition_feature = road_condition_features_repository.get_road_condition_feature_by_id(session, feature.id)
+
+    if road_condition_feature is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=ErrorCode.RoadConditionFeatureNotFound.value
+        )
+    
+    await road_condition_features_repository.delete_road_condition_feature(session, feature)

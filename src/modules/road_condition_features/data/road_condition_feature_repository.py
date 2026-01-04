@@ -16,3 +16,10 @@ async def get_road_condition_feature_by_id(
     return await session.get(RoadConditionFeature, feature_id) 
 
 
+async def delete_road_condition_feature(
+    session: AsyncSession, feature: RoadConditionFeature
+) -> None:
+    await session.delete(feature)
+    await session.commit()
+
+
