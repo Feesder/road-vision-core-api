@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from common.constants.road_type import RoadType
+from src.common.constants.road_type import RoadType
 from typing import Optional
 
 
