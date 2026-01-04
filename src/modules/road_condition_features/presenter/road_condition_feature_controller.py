@@ -1,4 +1,8 @@
 from fastapi import APIRouter
+from sqlalchemy.ext.asyncio import AsyncSession
+from src.common.database.db_helper import db_helper
+from src.modules.road_condition_features.domain.road_condition_feature_service import get_road_condition_features
+from fastapi import Depends
 
 
 road_condition_feature_router = APIRouter(
@@ -12,8 +16,10 @@ async def create_road_condition_feature():
 
 
 @road_condition_feature_router.get("")
-async def get_road_condition_features():
-    pass
+async def get_road_condition_features(session: AsyncSession = Depends(db_helper.scoped_session_depedency)):
+    road_condition_features = await get_road_condition_features(session)
+
+    return road_condition_features
 
 
 @road_condition_feature_router.get("/{feature_id}")
