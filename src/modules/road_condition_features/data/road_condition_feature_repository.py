@@ -8,3 +8,11 @@ async def get_road_condition_features(ssesion: AsyncSession) -> list[RoadConditi
     road_condition_features = result.scalars().all()
 
     return list(road_condition_features)
+
+
+async def get_road_condition_feature_by_id(
+    session: AsyncSession, feature_id: str
+) -> RoadConditionFeature | None:
+    return await session.get(RoadConditionFeature, feature_id) 
+
+

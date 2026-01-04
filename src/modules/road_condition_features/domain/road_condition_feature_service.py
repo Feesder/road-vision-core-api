@@ -1,6 +1,9 @@
+from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 import src.modules.road_condition_features.data.road_condition_feature_repository as road_condition_features_repository
 from src.common.models.road_condition_feature import RoadConditionFeature
+from fastapi import status
+from src.common.constants.error_code import ErrorCode
 
 
 async def get_road_condition_features(session: AsyncSession) -> list[RoadConditionFeature]:
@@ -8,3 +11,17 @@ async def get_road_condition_features(session: AsyncSession) -> list[RoadConditi
 
     return road_condition_features
 
+
+async def get_road_condition_feature_by_id(
+    session: AsyncSession, feature_id: str
+) -> RoadConditionFeature | None:
+    road_condition_feature = await road_condition_features_repository.get_road_condition_feature_by_id(
+        session, feature_id
+    )
+
+    if (road_condition_feature is None):
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail=ErrorCode.RoadConditionFeatureNotFound.value
+        )
+
+    return road_condition_feature
